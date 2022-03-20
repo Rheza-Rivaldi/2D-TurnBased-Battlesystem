@@ -395,6 +395,14 @@ PrefabInstance:
       propertyPath: m_Text
       value: Hero 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8216364398293986294, guid: 1009691967fd1c04f86c8110a3bbd6af, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.9527
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216364398293986294, guid: 1009691967fd1c04f86c8110a3bbd6af, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.714
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1009691967fd1c04f86c8110a3bbd6af, type: 3}
 --- !u!224 &147984324 stripped
@@ -980,6 +988,7 @@ MonoBehaviour:
     curAtk: 12
     baseDef: 8
     curDef: 8
+  currentState: 0
 --- !u!1 &1056394462
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,6 +2688,7 @@ MonoBehaviour:
     curAtk: 10
     baseDef: 10
     curDef: 10
+  currentState: 0
 --- !u!224 &1578642402 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8216364397457459453, guid: 1009691967fd1c04f86c8110a3bbd6af, type: 3}
@@ -2882,6 +2892,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1602751167}
   m_CullTransparentMesh: 1
+--- !u!1 &1643376140
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1643376142}
+  - component: {fileID: 1643376141}
+  m_Layer: 0
+  m_Name: BattleManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1643376141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643376140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3672580a5c2e784f84425ed3535cd16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  battleState: 0
+  PerformList: []
+  HeroInBattle: []
+  EnemyInBattle: []
+--- !u!4 &1643376142
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643376140}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697023240
 GameObject:
   m_ObjectHideFlags: 0
@@ -3474,8 +3531,12 @@ PrefabInstance:
       value: Hero 1
       objectReference: {fileID: 0}
     - target: {fileID: 8216364398293986294, guid: 1009691967fd1c04f86c8110a3bbd6af, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.9527
+      objectReference: {fileID: 0}
+    - target: {fileID: 8216364398293986294, guid: 1009691967fd1c04f86c8110a3bbd6af, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.11882973
+      value: 0.714
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1009691967fd1c04f86c8110a3bbd6af, type: 3}
