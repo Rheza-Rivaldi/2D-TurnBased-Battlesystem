@@ -38,9 +38,10 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\EnemyStateMachine.cs" />
      <Compile Include="Assets\Scripts\BaseClass.cs" />
+     <Compile Include="Assets\Scripts\TurnHandler.cs" />
      <Compile Include="Assets\Scripts\HeroStateMachine.cs" />
      <Compile Include="Assets\Scripts\BattleStateMachine.cs" />
-     <Compile Include="Assets\Scripts\TurnHandler.cs" />
+     <Compile Include="Assets\Scripts\EnemySelectButton.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity 2020.3.22f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

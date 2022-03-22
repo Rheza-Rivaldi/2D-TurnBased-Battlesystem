@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleStateMachine : MonoBehaviour
 {
@@ -17,11 +18,31 @@ public class BattleStateMachine : MonoBehaviour
     public List<GameObject> EnemyInBattle = new List<GameObject>();
 
 
+    public enum HeroGUI
+    {
+        ACTIVATE,
+        WAITING,
+        INPUT1,
+        INPUT2,
+        DONE
+    }
+
+    public HeroGUI HeroInput;
+
+    public List<GameObject> HeroToManage = new List<GameObject>();
+    private TurnHandler HeroChoice;
+
+    public GameObject enemyButton;
+    public Transform Spacer;
+
+
     void Start()
     {
         battleState = PerformAction.WAIT;
         HeroInBattle.AddRange(GameObject.FindGameObjectsWithTag("Hero"));
         EnemyInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+
+        EnemyButtons();
     }
 
     void Update()
@@ -61,5 +82,22 @@ public class BattleStateMachine : MonoBehaviour
     public void CollectAction(TurnHandler input)
     {
         PerformList.Add(input);
+    }
+
+    void EnemyButtons()
+    {
+        foreach (GameObject enemy in EnemyInBattle)
+        {
+            GameObject newButton = Instantiate(enemyButton) as GameObject;
+            EnemySelectButton button = newButton.GetComponent<EnemySelectButton>();
+            EnemyStateMachine cur_enemy = enemy.GetComponent<EnemyStateMachine>();
+
+            Text buttonText = newButton.transform.Find("Text").gameObject.GetComponent<Text>();
+            buttonText.text = cur_enemy.enemy.name;
+
+            button.EnemyPrefab = enemy;
+
+            newButton.transform.SetParent(Spacer,false);
+        }
     }
 }
