@@ -26,8 +26,10 @@ public class HeroStateMachine : MonoBehaviour
 
     void Start()
     {
+        cur_cooldown = Random.Range(0,1f);
         currentState = TurnState.PROCESSING;
         BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
+        this.transform.Find("HeroSelector").gameObject.SetActive(false);
     }
 
 
