@@ -75,7 +75,9 @@ public class BattleStateMachine : MonoBehaviour
 
             if(PerformList[0].Type == "Hero")
             {
-                
+                HeroStateMachine HSM = performer.GetComponent<HeroStateMachine>();
+                HSM.AttackTarget = PerformList[0].TargetGameObject;
+                HSM.currentState = HeroStateMachine.TurnState.ACTION;
             }
 
             battleState = PerformAction.PERFORMACTION;

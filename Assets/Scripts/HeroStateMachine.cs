@@ -8,6 +8,8 @@ public class HeroStateMachine : MonoBehaviour
     BattleStateMachine BSM;
     public BaseClass hero;
 
+    Vector3 startposition;
+
     public enum TurnState
     {
         PROCESSING,
@@ -23,6 +25,11 @@ public class HeroStateMachine : MonoBehaviour
     float max_cooldown = 3f;
     public Image ProgressBar;
 
+    //IEnumerator
+    bool actionStarted = false;
+    public GameObject AttackTarget;
+    float animSpeed = 10f;
+
 
     void Start()
     {
@@ -30,6 +37,7 @@ public class HeroStateMachine : MonoBehaviour
         currentState = TurnState.PROCESSING;
         BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
         this.transform.Find("HeroSelector").gameObject.SetActive(false);
+        startposition = transform.position;
     }
 
 
@@ -51,6 +59,7 @@ public class HeroStateMachine : MonoBehaviour
             break;
 
             case(TurnState.ACTION):
+            StartCoroutine(TimeForAction());
             break;
 
             case(TurnState.DEAD):
@@ -67,5 +76,46 @@ public class HeroStateMachine : MonoBehaviour
         if (cur_cooldown >= max_cooldown){
             currentState = TurnState.ADDTOLIST;
         }
+    }
+
+    IEnumerator TimeForAction()
+    {
+        if (actionStarted){yield break;}
+        actionStarted = true;
+
+        //move to target
+        Vector2 targetPosition = new Vector3(AttackTarget.transform.position.x+1f,AttackTarget.transform.position.y,AttackTarget.transform.position.z);
+        while(MoveTowardTarget(targetPosition))
+        {
+            yield return null;
+        }
+        //wait a bit
+        yield return new WaitForSeconds(0.5f);
+        //do damage
+
+        //go back to original position
+        Vector3 firstPosition = startposition;
+        while(MoveTowardStart(firstPosition))
+        {
+            yield return null;
+        }
+        //remove from perform list
+        BSM.PerformList.RemoveAt(0);
+        //reset bsm state to waiting
+        BSM.battleState = BattleStateMachine.PerformAction.WAIT;
+        //end coroutine
+        actionStarted = false;
+        //reset this object state
+        cur_cooldown = 0f;
+        currentState = TurnState.PROCESSING;
+    }
+
+    private bool MoveTowardTarget (Vector3 target)
+    {
+        return target != (transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime));
+    }
+    private bool MoveTowardStart (Vector3 target)
+    {
+        return target != (transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime));
     }
 }
