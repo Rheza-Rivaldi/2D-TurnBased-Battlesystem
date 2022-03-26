@@ -10,4 +10,9 @@ public class EnemySelectButton : MonoBehaviour
     {
         GameObject.Find("BattleManager").GetComponent<BattleStateMachine>().EnemySelectButtonPress(EnemyPrefab); //save input
     }
+
+    public void ToggleSelector(bool state)
+    {
+        EnemyPrefab.transform.Find("EnemySelector").gameObject.SetActive(state);
+    }
 }
