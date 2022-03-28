@@ -80,7 +80,10 @@ public class EnemyStateMachine : MonoBehaviour
         myAttack.Type = "Enemy";
         myAttack.AttackerGameObject = this.gameObject;
         myAttack.TargetGameObject = BSM.HeroInBattle[Random.Range(0, BSM.HeroInBattle.Count)];
+        myAttack.choosenAttack = enemy.AttackList[Random.Range(0, enemy.AttackList.Count)];
         BSM.CollectAction(myAttack);
+
+        Debug.Log(this.gameObject.name + " choose " + myAttack.choosenAttack.attackName + " and do " + myAttack.choosenAttack.attackDamage + " damage.");
     }
 
     IEnumerator TimeForAction()
@@ -97,7 +100,7 @@ public class EnemyStateMachine : MonoBehaviour
         //wait a bit
         yield return new WaitForSeconds(0.5f);
         //do damage
-
+        DoDamage();
         //go back to original position
         Vector3 firstPosition = startposition;
         while(MoveTowardStart(firstPosition))
@@ -122,5 +125,12 @@ public class EnemyStateMachine : MonoBehaviour
     private bool MoveTowardStart (Vector3 target)
     {
         return target != (transform.position = Vector3.MoveTowards(transform.position, target, animSpeed * Time.deltaTime));
+    }
+
+    void DoDamage()
+    {
+        float calc_damage = enemy.curAtk * BSM.PerformList[0].choosenAttack.attackDamage;
+
+        AttackTarget.GetComponent<HeroStateMachine>().TakeDamage(calc_damage);
     }
 }

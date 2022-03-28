@@ -17,4 +17,6 @@ public class BaseClass
    public float baseDef;
    public float curDef;
 
+   public List<BaseAttack> AttackList = new List<BaseAttack>();
+
 }

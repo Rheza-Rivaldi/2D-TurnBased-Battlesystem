@@ -2719,6 +2719,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 894356521794481824, guid: 8d26d2ecff25c704ca059c2956c34165, type: 3}
+      propertyPath: enemy.AttackList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 894356521794481824, guid: 8d26d2ecff25c704ca059c2956c34165, type: 3}
+      propertyPath: enemy.AttackList.Array.data[0]
+      value: 
+      objectReference: {fileID: 6655113860630877189, guid: e3d7b54f9157eba4db6d9ecc431a7062, type: 3}
     - target: {fileID: 894356521794481827, guid: 8d26d2ecff25c704ca059c2956c34165, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -2780,6 +2788,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy2
       objectReference: {fileID: 0}
+    - target: {fileID: 7071341904083782850, guid: ec9752ec74b08fa4a8ef5919b8dd2a41, type: 3}
+      propertyPath: enemy.AttackList.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071341904083782850, guid: ec9752ec74b08fa4a8ef5919b8dd2a41, type: 3}
+      propertyPath: enemy.AttackList.Array.data[0]
+      value: 
+      objectReference: {fileID: 698081634509291904, guid: e4e04abbafb7fb946835295e7872e3d6, type: 3}
     - target: {fileID: 7071341904083782851, guid: ec9752ec74b08fa4a8ef5919b8dd2a41, type: 3}
       propertyPath: m_RootOrder
       value: 5
