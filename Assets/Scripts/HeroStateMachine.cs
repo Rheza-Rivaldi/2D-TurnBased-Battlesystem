@@ -30,6 +30,8 @@ public class HeroStateMachine : MonoBehaviour
     public GameObject AttackTarget;
     float animSpeed = 10f;
 
+    bool alive = true;
+
 
     void Start()
     {
@@ -63,6 +65,37 @@ public class HeroStateMachine : MonoBehaviour
             break;
 
             case(TurnState.DEAD):
+            if(!alive)
+            {
+                return;
+            }
+            else
+            {
+                //change tag
+                this.gameObject.tag = "DeadHero";
+                //not attackable
+                BSM.HeroInBattle.Remove(this.gameObject);
+                //not manageable
+                BSM.HeroToManage.Remove(this.gameObject);
+                //deactivate selector
+                this.transform.Find("HeroSelector").gameObject.SetActive(false);
+                //reset GUI
+                BSM.ActionPanel.SetActive(false);
+                BSM.TargetSelectPanel.SetActive(false);
+                //remove from performlist
+                for(int i = 0; i < BSM.PerformList.Count; i++)
+                {
+                    if(BSM.PerformList[i].AttackerGameObject == this.gameObject)
+                    {
+                        BSM.PerformList.Remove(BSM.PerformList[i]);
+                    }
+                }
+                //change color
+                this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(105,105,105,255);
+                //reset heroinput
+                BSM.HeroInput = BattleStateMachine.HeroGUI.ACTIVATE;
+                alive = false;
+            }
             break;
         }
     }

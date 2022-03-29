@@ -2602,6 +2602,10 @@ PrefabInstance:
       value: Hero2
       objectReference: {fileID: 0}
     - target: {fileID: 391305762022040445, guid: d34e70c3d5bc89c4987e465a1dc9fc6c, type: 3}
+      propertyPath: hero.curHP
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 391305762022040445, guid: d34e70c3d5bc89c4987e465a1dc9fc6c, type: 3}
       propertyPath: ProgressBar
       value: 
       objectReference: {fileID: 147984325}
@@ -2705,6 +2709,10 @@ PrefabInstance:
     - target: {fileID: 811678409384485106, guid: 877109c804074ae4c8c8cc2f0aa12ab0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 811678409384485107, guid: 877109c804074ae4c8c8cc2f0aa12ab0, type: 3}
+      propertyPath: hero.curHP
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 811678409384485107, guid: 877109c804074ae4c8c8cc2f0aa12ab0, type: 3}
       propertyPath: ProgressBar
