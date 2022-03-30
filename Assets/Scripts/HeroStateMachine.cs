@@ -23,7 +23,7 @@ public class HeroStateMachine : MonoBehaviour
     //for progressbar
     float cur_cooldown = 0f;
     float max_cooldown = 3f;
-    public Image ProgressBar;
+    Image ProgressBar;
 
     //IEnumerator
     bool actionStarted = false;
@@ -32,9 +32,16 @@ public class HeroStateMachine : MonoBehaviour
 
     bool alive = true;
 
+    //heropanel
+    HeroPanelStats stats;
+    public GameObject HeroPanel;
+    Transform HeroPanelSpacer;
+
 
     void Start()
     {
+        HeroPanelSpacer = GameObject.Find("HeroPanelSpacer").transform;
+        CreateHeroPanel();
         cur_cooldown = Random.Range(0,1f);
         currentState = TurnState.PROCESSING;
         BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
@@ -157,7 +164,27 @@ public class HeroStateMachine : MonoBehaviour
         hero.curHP -= damageAmount;
         if (hero.curHP <= 0)
         {
+            hero.curHP = 0;
             currentState = TurnState.DEAD;
         }
+        UpdateHeroPanel();
+    }
+
+    void CreateHeroPanel()
+    {
+        HeroPanel = Instantiate(HeroPanel) as GameObject;
+        stats = HeroPanel.GetComponent<HeroPanelStats>();
+        stats.HeroName.text = hero.name;
+        stats.HeroHP.text = "HP: " + hero.curHP;
+        stats.HeroMP.text = "MP: " + hero.curMP;
+
+        ProgressBar = stats.ProgressBar;
+        HeroPanel.transform.SetParent(HeroPanelSpacer, false);
+    }
+
+    void UpdateHeroPanel()
+    {
+        stats.HeroHP.text = "HP: " + hero.curHP;
+        stats.HeroMP.text = "MP: " + hero.curMP;
     }
 }
