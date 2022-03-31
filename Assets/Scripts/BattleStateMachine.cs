@@ -33,10 +33,18 @@ public class BattleStateMachine : MonoBehaviour
     private TurnHandler HeroChoice;
 
     public GameObject enemyButton;
-    public Transform Spacer;
+    public GameObject actionButton;
+    public Transform TargetSpacer;
+    public Transform ActionSpacer;
+    public Transform MagicSpacer;
 
     public GameObject ActionPanel;
     public GameObject TargetSelectPanel;
+    public GameObject MagicPanel;
+
+    List<GameObject> atkBtns = new List<GameObject>();
+
+
 
 
     void Start()
@@ -48,6 +56,7 @@ public class BattleStateMachine : MonoBehaviour
 
         ActionPanel.SetActive(false);
         TargetSelectPanel.SetActive(false);
+        MagicPanel.SetActive(false);
 
         EnemyButtons();
     }
@@ -108,6 +117,7 @@ public class BattleStateMachine : MonoBehaviour
                 HeroToManage[0].transform.Find("HeroSelector").gameObject.SetActive(true);
                 HeroChoice = new TurnHandler();
                 ActionPanel.SetActive(true);
+                CreateAttackButton();
 
                 HeroInput = HeroGUI.WAITING;
             }
@@ -142,7 +152,7 @@ public class BattleStateMachine : MonoBehaviour
 
             button.EnemyPrefab = enemy;
 
-            newButton.transform.SetParent(Spacer,false);
+            newButton.transform.SetParent(TargetSpacer,false);
         }
     }
 
@@ -165,8 +175,32 @@ public class BattleStateMachine : MonoBehaviour
     {
         PerformList.Add (HeroChoice);
         TargetSelectPanel.SetActive(false);
+
+        foreach(GameObject atkBtn in atkBtns)
+        {
+            Destroy(atkBtn);
+        }
+        atkBtns.Clear();
+
         HeroToManage[0].transform.Find("HeroSelector").gameObject.SetActive(false);
         HeroToManage.RemoveAt(0);
         HeroInput = HeroGUI.ACTIVATE;
+    }
+
+    void CreateAttackButton()
+    {
+        GameObject AttackButton = Instantiate(actionButton) as GameObject;
+        Text AttackButtontext = AttackButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        AttackButtontext.text = "Attack";
+        AttackButton.GetComponent<Button>().onClick.AddListener(()=>AttackButtonPress());
+        AttackButton.transform.SetParent(ActionSpacer, false);
+        atkBtns.Add(AttackButton);
+
+        GameObject MagicAttackButton = Instantiate(actionButton) as GameObject;
+        Text MagicAttackButtontext = MagicAttackButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        MagicAttackButtontext.text = "Magic";
+        //MagicAttackButton.GetComponent<Button>().onClick.AddListener(()=>AttackButtonPress());
+        MagicAttackButton.transform.SetParent(ActionSpacer, false);
+        atkBtns.Add(MagicAttackButton);
     }
 }
