@@ -1910,6 +1910,7 @@ MonoBehaviour:
   HeroToManage: []
   enemyButton: {fileID: 7302020023299233761, guid: e08b34cf2d099e44fbf26f109cb51c44, type: 3}
   actionButton: {fileID: 1471917106657968545, guid: 8483001c6c92f5243a44871d16ba747a, type: 3}
+  magicButton: {fileID: 6564027759972842957, guid: f3e13c9f637c23b4299adb5f50650bc7, type: 3}
   TargetSpacer: {fileID: 1234357108}
   ActionSpacer: {fileID: 2069540723}
   MagicSpacer: {fileID: 1510773616}

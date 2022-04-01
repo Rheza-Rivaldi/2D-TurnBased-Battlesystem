@@ -18,5 +18,6 @@ public class BaseClass
    public float curDef;
 
    public List<BaseAttack> AttackList = new List<BaseAttack>();
+   public List<BaseAttack> MagicAttacks = new List<BaseAttack>();
 
 }

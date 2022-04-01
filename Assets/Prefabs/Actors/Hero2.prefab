@@ -106,9 +106,13 @@ MonoBehaviour:
     curAtk: 15
     baseDef: 15
     curDef: 15
+    AttackList: []
+    MagicAttacks:
+    - {fileID: 8226514985447726852, guid: d7bb16607d3b1014fbe2dab9dc688c49, type: 3}
+    - {fileID: 540030182141252999, guid: 64719169b7ac6834581dd45b54022622, type: 3}
   currentState: 0
-  ProgressBar: {fileID: 0}
   AttackTarget: {fileID: 0}
+  HeroPanel: {fileID: 0}
 --- !u!1001 &391305760198363043
 PrefabInstance:
   m_ObjectHideFlags: 0

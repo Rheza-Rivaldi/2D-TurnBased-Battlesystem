@@ -34,6 +34,7 @@ public class BattleStateMachine : MonoBehaviour
 
     public GameObject enemyButton;
     public GameObject actionButton;
+    public GameObject magicButton;
     public Transform TargetSpacer;
     public Transform ActionSpacer;
     public Transform MagicSpacer;
@@ -162,6 +163,23 @@ public class BattleStateMachine : MonoBehaviour
         TargetSelectPanel.SetActive(true);
     }
 
+    public void MagicButtonPress()
+    {
+        if(HeroToManage[0].GetComponent<HeroStateMachine>().hero.MagicAttacks.Count>0)
+        {
+            ActionPanel.SetActive(false);
+            MagicPanel.SetActive(true);
+        }
+        return;
+    }
+
+    public void MagicAttackButtonPress(BaseAttack choosenMagic)
+    {
+        MagicPanel.SetActive(false);
+        TargetSelectPanel.SetActive(true);
+        HeroChoice.choosenAttack = choosenMagic;
+    }
+
     public void EnemySelectButtonPress(GameObject choosenEnemy)
     {
         HeroChoice.AttackerName = HeroToManage[0].name;
@@ -196,11 +214,30 @@ public class BattleStateMachine : MonoBehaviour
         AttackButton.transform.SetParent(ActionSpacer, false);
         atkBtns.Add(AttackButton);
 
-        GameObject MagicAttackButton = Instantiate(actionButton) as GameObject;
-        Text MagicAttackButtontext = MagicAttackButton.transform.Find("Text").gameObject.GetComponent<Text>();
-        MagicAttackButtontext.text = "Magic";
-        //MagicAttackButton.GetComponent<Button>().onClick.AddListener(()=>AttackButtonPress());
-        MagicAttackButton.transform.SetParent(ActionSpacer, false);
-        atkBtns.Add(MagicAttackButton);
+        GameObject MagicButton = Instantiate(actionButton) as GameObject;
+        Text MagicButtontext = MagicButton.transform.Find("Text").gameObject.GetComponent<Text>();
+        MagicButtontext.text = "Magic";
+        MagicButton.GetComponent<Button>().onClick.AddListener(()=>MagicButtonPress());
+        MagicButton.transform.SetParent(ActionSpacer, false);
+        atkBtns.Add(MagicButton);
+
+        if(HeroToManage[0].GetComponent<HeroStateMachine>().hero.MagicAttacks.Count>0)
+        {
+            foreach(BaseAttack magicatk in HeroToManage[0].GetComponent<HeroStateMachine>().hero.MagicAttacks)
+            {
+                GameObject MagicAttackButton = Instantiate(magicButton) as GameObject;
+                Text MagicAttackButtontext = MagicAttackButton.transform.Find("Text").gameObject.GetComponent<Text>();
+                MagicAttackButtontext.text = magicatk.attackName;
+                MagicAttackButton.GetComponent<Button>().onClick.AddListener(()=>MagicAttackButtonPress(magicatk));
+                //MagicAttackButtonScript MTB = MagicAttackButton.GetComponent<MagicAttackButtonScript>();
+                //MTB.magicAttackToPerform = magicatk;
+                MagicAttackButton.transform.SetParent(MagicSpacer, false);
+                atkBtns.Add(MagicAttackButton);
+            }
+        }
+        else
+        {
+            MagicButton.GetComponent<Button>().interactable = false;
+        }
     }
 }
