@@ -106,13 +106,14 @@ MonoBehaviour:
     curAtk: 20
     baseDef: 10
     curDef: 10
-    AttackList: []
+    AttackList:
+    - {fileID: 6655113860630877189, guid: e3d7b54f9157eba4db6d9ecc431a7062, type: 3}
     MagicAttacks:
     - {fileID: 8870233105946580713, guid: c7f44c1e5f8d118449b96dee32db5bd0, type: 3}
     - {fileID: 540030182141252999, guid: 64719169b7ac6834581dd45b54022622, type: 3}
   currentState: 0
   AttackTarget: {fileID: 0}
-  HeroPanel: {fileID: 0}
+  HeroPanel: {fileID: 8216364397457459454, guid: 1009691967fd1c04f86c8110a3bbd6af, type: 3}
 --- !u!1001 &8016815650486997498
 PrefabInstance:
   m_ObjectHideFlags: 0

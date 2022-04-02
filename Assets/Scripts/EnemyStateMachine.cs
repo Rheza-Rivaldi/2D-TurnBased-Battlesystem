@@ -133,4 +133,14 @@ public class EnemyStateMachine : MonoBehaviour
 
         AttackTarget.GetComponent<HeroStateMachine>().TakeDamage(calc_damage);
     }
+
+    public void TakeDamage (float damageAmount)
+    {
+        enemy.curHP -= damageAmount;
+        if (enemy.curHP <= 0)
+        {
+            enemy.curHP = 0;
+            currentState = TurnState.DEAD;
+        }
+    }
 }

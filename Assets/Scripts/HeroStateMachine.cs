@@ -100,7 +100,7 @@ public class HeroStateMachine : MonoBehaviour
                 //change color
                 this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(105,105,105,255);
                 //reset heroinput
-                BSM.HeroInput = BattleStateMachine.HeroGUI.ACTIVATE;
+                BSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
                 alive = false;
             }
             break;
@@ -132,7 +132,7 @@ public class HeroStateMachine : MonoBehaviour
         //wait a bit
         yield return new WaitForSeconds(0.5f);
         //do damage
-
+        DoDamage();
         //go back to original position
         Vector3 firstPosition = startposition;
         while(MoveTowardStart(firstPosition))
@@ -168,6 +168,13 @@ public class HeroStateMachine : MonoBehaviour
             currentState = TurnState.DEAD;
         }
         UpdateHeroPanel();
+    }
+
+    void DoDamage()
+    {
+        float calc_damage = hero.curAtk * BSM.PerformList[0].choosenAttack.attackDamage;
+
+        AttackTarget.GetComponent<EnemyStateMachine>().TakeDamage(calc_damage);
     }
 
     void CreateHeroPanel()
