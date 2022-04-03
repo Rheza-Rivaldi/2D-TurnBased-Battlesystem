@@ -28,6 +28,8 @@ public class EnemyStateMachine : MonoBehaviour
     public GameObject AttackTarget;
     float animSpeed = 10f;
 
+    bool alive = true;
+
 
     void Start()
     {
@@ -60,6 +62,27 @@ public class EnemyStateMachine : MonoBehaviour
             break;
 
             case(TurnState.DEAD):
+            if(!alive)
+            {
+                return;
+            }
+            else
+            {
+                this.gameObject.tag = "DeadEnemy";
+                BSM.EnemyInBattle.Remove(this.gameObject);
+                this.transform.Find("EnemySelector").gameObject.SetActive(false);
+                for(int i = 0; i < BSM.PerformList.Count; i++)
+                {
+                    if(BSM.PerformList[i].AttackerGameObject == this.gameObject)
+                    {
+                        BSM.PerformList.RemoveAt(i);
+                    }
+                }
+                this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(105,105,105,255);
+                alive = false;
+                BSM.EnemyButtons();
+                BSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
+            }
             break;
         }
     }

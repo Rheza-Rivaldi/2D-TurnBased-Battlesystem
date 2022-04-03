@@ -47,6 +47,7 @@ public class BattleStateMachine : MonoBehaviour
     public GameObject MagicPanel;
 
     List<GameObject> atkBtns = new List<GameObject>();
+    List<GameObject> enemyBtns = new List<GameObject>();
 
 
 
@@ -129,6 +130,10 @@ public class BattleStateMachine : MonoBehaviour
             break;
 
             case(PerformAction.WIN):
+            for(int i = 0; i < HeroInBattle.Count; i++)
+            {
+                HeroInBattle[i].GetComponent<HeroStateMachine>().currentState = HeroStateMachine.TurnState.WAITING;
+            }
             break;
 
             case(PerformAction.LOSE):
@@ -165,8 +170,13 @@ public class BattleStateMachine : MonoBehaviour
         PerformList.Add(input);
     }
 
-    void EnemyButtons()
+    public void EnemyButtons()
     {
+        foreach(GameObject enemyBtn in enemyBtns)
+        {
+            Destroy(enemyBtn);
+        }
+        enemyBtns.Clear();
         foreach (GameObject enemy in EnemyInBattle)
         {
             GameObject newButton = Instantiate(enemyButton) as GameObject;
@@ -179,6 +189,7 @@ public class BattleStateMachine : MonoBehaviour
             button.EnemyPrefab = enemy;
 
             newButton.transform.SetParent(TargetSpacer,false);
+            enemyBtns.Add(newButton);
         }
     }
 

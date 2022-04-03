@@ -2360,7 +2360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 811678409384485107, guid: 877109c804074ae4c8c8cc2f0aa12ab0, type: 3}
       propertyPath: hero.curHP
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 877109c804074ae4c8c8cc2f0aa12ab0, type: 3}
@@ -2371,6 +2371,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 894356521794481824, guid: 8d26d2ecff25c704ca059c2956c34165, type: 3}
+      propertyPath: enemy.curHP
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 894356521794481824, guid: 8d26d2ecff25c704ca059c2956c34165, type: 3}
       propertyPath: enemy.AttackList.Array.size
       value: 1
@@ -2439,6 +2443,10 @@ PrefabInstance:
     - target: {fileID: 7071341904083782849, guid: ec9752ec74b08fa4a8ef5919b8dd2a41, type: 3}
       propertyPath: m_Name
       value: Enemy2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7071341904083782850, guid: ec9752ec74b08fa4a8ef5919b8dd2a41, type: 3}
+      propertyPath: enemy.curHP
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7071341904083782850, guid: ec9752ec74b08fa4a8ef5919b8dd2a41, type: 3}
       propertyPath: enemy.AttackList.Array.size
