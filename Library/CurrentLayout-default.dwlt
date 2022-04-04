@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1366
     height: 702
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 153
+  controlID: 170
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 36
+  controlID: 16
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 154
+  controlID: 96
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -430,9 +430,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 248.8309, y: 126.72364, z: -132.47893}
+    m_Target: {x: -0.44755912, y: -1.8161129, z: -10.699114}
     speed: 2
-    m_Value: {x: 248.8309, y: 126.72364, z: -132.47893}
+    m_Value: {x: -0.44755912, y: -1.8161129, z: -10.699114}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -483,9 +483,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 145.53217
+    m_Target: 3.4974358
     speed: 2
-    m_Value: 145.53217
+    m_Value: 3.4974358
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -563,8 +563,8 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 16430000
-      m_LastClickedID: 17174
+      m_SelectedIDs: 
+      m_LastClickedID: 0
       m_ExpandedIDs: 48fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
@@ -642,7 +642,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 46}
     m_SelectedIDs: 8c440000
     m_LastClickedID: 17548
-    m_ExpandedIDs: 00000000884400008a4400008c4400008e440000904400009a44000000ca9a3b
+    m_ExpandedIDs: 00000000884400008a4400008c4400008e4400009044000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

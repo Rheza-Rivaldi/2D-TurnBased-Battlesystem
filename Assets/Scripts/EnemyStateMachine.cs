@@ -71,11 +71,18 @@ public class EnemyStateMachine : MonoBehaviour
                 this.gameObject.tag = "DeadEnemy";
                 BSM.EnemyInBattle.Remove(this.gameObject);
                 this.transform.Find("EnemySelector").gameObject.SetActive(false);
-                for(int i = 0; i < BSM.PerformList.Count; i++)
+                if(BSM.EnemyInBattle.Count > 0)
                 {
-                    if(BSM.PerformList[i].AttackerGameObject == this.gameObject)
+                    for(int i = 0; i < BSM.PerformList.Count; i++)
                     {
-                        BSM.PerformList.RemoveAt(i);
+                        if(BSM.PerformList[i].AttackerGameObject == this.gameObject)
+                        {
+                            BSM.PerformList.RemoveAt(i);
+                        }
+                        if(BSM.PerformList[i].TargetGameObject == this.gameObject)
+                        {
+                            BSM.PerformList[i].TargetGameObject = BSM.EnemyInBattle[(Random.Range(0,BSM.EnemyInBattle.Count))];
+                        }
                     }
                 }
                 this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(105,105,105,255);

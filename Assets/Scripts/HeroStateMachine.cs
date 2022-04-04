@@ -90,11 +90,18 @@ public class HeroStateMachine : MonoBehaviour
                 BSM.ActionPanel.SetActive(false);
                 BSM.TargetSelectPanel.SetActive(false);
                 //remove from performlist
-                for(int i = 0; i < BSM.PerformList.Count; i++)
+                if(BSM.HeroInBattle.Count > 0)
                 {
-                    if(BSM.PerformList[i].AttackerGameObject == this.gameObject)
+                    for(int i = 0; i < BSM.PerformList.Count; i++)
                     {
-                        BSM.PerformList.Remove(BSM.PerformList[i]);
+                        if(BSM.PerformList[i].AttackerGameObject == this.gameObject)
+                        {
+                            BSM.PerformList.Remove(BSM.PerformList[i]);
+                        }
+                        if(BSM.PerformList[i].TargetGameObject == this.gameObject)
+                        {
+                            BSM.PerformList[i].TargetGameObject = BSM.HeroInBattle[Random.Range(0, BSM.HeroInBattle.Count)];
+                        }
                     }
                 }
                 //change color
