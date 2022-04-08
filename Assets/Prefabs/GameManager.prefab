@@ -43,3 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6faba3bb915211647b977c2c038fc74d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heroChar: {fileID: 6950686832516016010, guid: 19966e0025e9967498cfa12bc53af27c, type: 3}
+  spawnPointName: 
+  nextHeroPosition: {x: 0, y: 0, z: 0}
+  sceneToLoad: 
