@@ -9,6 +9,7 @@ TagManager:
   - DeadHero
   - DeadEnemy
   - Warper
+  - Encounter Zone
   layers:
   - Default
   - TransparentFX
