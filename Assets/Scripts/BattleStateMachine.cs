@@ -49,14 +49,24 @@ public class BattleStateMachine : MonoBehaviour
     List<GameObject> atkBtns = new List<GameObject>();
     List<GameObject> enemyBtns = new List<GameObject>();
 
+    public List<Transform> enemySpawnPoints = new List<Transform>();
 
-
+    void Awake()
+    {
+        for(int i = 0; i < GameManager.gameManager.enemyAmount; i++)
+        {
+            GameObject newEnemy = Instantiate(GameManager.gameManager.enemiesToBattle[i], enemySpawnPoints[i].position, Quaternion.identity) as GameObject;
+            newEnemy.name = newEnemy.GetComponent<EnemyStateMachine>().enemy.name+" "+ (i+1);
+            newEnemy.GetComponent<EnemyStateMachine>().enemy.name = newEnemy.name;
+            EnemyInBattle.Add(newEnemy);
+        }
+    }
 
     void Start()
     {
         battleState = PerformAction.WAIT;
         HeroInBattle.AddRange(GameObject.FindGameObjectsWithTag("Hero"));
-        EnemyInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+        //EnemyInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
         HeroInput = HeroGUI.ACTIVATE;
 
         ActionPanel.SetActive(false);
@@ -134,6 +144,10 @@ public class BattleStateMachine : MonoBehaviour
             {
                 HeroInBattle[i].GetComponent<HeroStateMachine>().currentState = HeroStateMachine.TurnState.WAITING;
             }
+            GameManager.gameManager.LoadNextScene();
+            GameManager.gameManager.gameStates = GameManager.GameStates.SAFE_STATE;
+            GameManager.gameManager.enemiesToBattle.Clear();
+            GameManager.gameManager.fromBattle = true;
             break;
 
             case(PerformAction.LOSE):

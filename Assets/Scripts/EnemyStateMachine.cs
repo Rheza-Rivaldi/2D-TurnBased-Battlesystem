@@ -113,7 +113,7 @@ public class EnemyStateMachine : MonoBehaviour
         myAttack.choosenAttack = enemy.AttackList[Random.Range(0, enemy.AttackList.Count)];
         BSM.CollectAction(myAttack);
 
-        Debug.Log(this.gameObject.name + " choose " + myAttack.choosenAttack.attackName + " and do " + myAttack.choosenAttack.attackDamage + " damage.");
+        //Debug.Log(this.gameObject.name + " choose " + myAttack.choosenAttack.attackName + " and do " + myAttack.choosenAttack.attackDamage + " damage.");
     }
 
     IEnumerator TimeForAction()

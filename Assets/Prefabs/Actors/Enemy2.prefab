@@ -25,8 +25,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7071341904083782849}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.65, y: -1.8, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1006391794175279050}
@@ -99,13 +99,16 @@ MonoBehaviour:
   enemy:
     name: Enemy2
     baseHP: 90
-    curHP: 90
+    curHP: 10
     baseMP: 20
     curMP: 20
     baseAtk: 12
     curAtk: 12
     baseDef: 8
     curDef: 8
+    AttackList:
+    - {fileID: 698081634509291904, guid: e4e04abbafb7fb946835295e7872e3d6, type: 3}
+    MagicAttacks: []
   currentState: 0
   AttackTarget: {fileID: 0}
 --- !u!1001 &7071341904910789598

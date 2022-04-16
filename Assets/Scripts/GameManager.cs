@@ -15,10 +15,17 @@ public class GameManager : MonoBehaviour
     public Vector3 lastHeroPosition;
 
     public string sceneToLoad;
+    public string lastScene;
 
     public bool isWalking = false;
     public bool canGetEncounter = false;
     public bool gotAttacked = false;
+    public bool fromBattle = false;
+
+    public RegionData curRegion;
+    public List<GameObject> enemiesToBattle = new List<GameObject>();
+
+    public int enemyAmount;
 
     public enum GameStates
     {
@@ -49,7 +56,10 @@ public class GameManager : MonoBehaviour
 
     void Start() 
     {
-        SceneManager.sceneLoaded += SetPlayerPosition;
+        if(SceneManager.GetActiveScene().name != "BattleScene")
+        {
+            SceneManager.sceneLoaded += SetPlayerPosition;
+        }
         gameStates = GameStates.SAFE_STATE;
     }
 
@@ -72,6 +82,9 @@ public class GameManager : MonoBehaviour
             break;
 
             case(GameStates.BATTLE_STATE):
+            StartBattle();
+            sceneToLoad = lastScene;
+            gameStates = GameStates.IDLE;
             break;
 
             case(GameStates.IDLE):
@@ -86,17 +99,14 @@ public class GameManager : MonoBehaviour
 
     void SetPlayerPosition(Scene scene, LoadSceneMode mode)
     {
+        canGetEncounter = false;
+        isWalking = false;
+        gotAttacked = false;
+
         if(sceneToLoad != "BattleScene")
         {
-            if(gotAttacked)
-            {
-                nextHeroPosition = lastHeroPosition;
-            }
-            else
-            {
-                nextPos = GameObject.Find(spawnPointName);
-                nextHeroPosition = nextPos.transform.position;
-            }
+            nextPos = GameObject.Find(spawnPointName);
+            nextHeroPosition = nextPos.transform.position;
         }
     }
 
@@ -104,7 +114,7 @@ public class GameManager : MonoBehaviour
     {
         if(isWalking && canGetEncounter)
         {
-            if(Random.Range(0,100) <= 5)
+            if(Random.Range(0,100) <= 2)
             {
                 gotAttacked = true;
             }
@@ -113,7 +123,18 @@ public class GameManager : MonoBehaviour
 
     void StartBattle()
     {
+        enemyAmount = Random.Range(1, curRegion.MaxAmountEnemies+1);
+        for(int i = 0; i < enemyAmount; i++)
+        {
+            enemiesToBattle.Add(curRegion.possibleEnemies[Random.Range(0, curRegion.possibleEnemies.Count)]);
+        }
+        lastHeroPosition = GameObject.Find("Player").transform.position;
+        lastScene = SceneManager.GetActiveScene().name;
 
+        isWalking = false;
+        canGetEncounter = false;
+
+        SceneManager.LoadScene("BattleScene");
     }
 
 }

@@ -12,7 +12,15 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
-        transform.position = GameManager.gameManager.nextHeroPosition;
+        if(!GameManager.gameManager.fromBattle)
+        {   
+            transform.position = GameManager.gameManager.nextHeroPosition;
+        }
+        else
+        {
+            transform.position = GameManager.gameManager.lastHeroPosition;
+            GameManager.gameManager.fromBattle = false;
+        }
     }
 
     void FixedUpdate()
@@ -47,6 +55,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.gameManager.canGetEncounter = true;
             GameManager.gameManager.gameStates = GameManager.GameStates.DANGER_STATE;
+            GameManager.gameManager.curRegion = other.gameObject.GetComponent<RegionData>();
         }
     }
 
