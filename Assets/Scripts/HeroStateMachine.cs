@@ -94,20 +94,24 @@ public class HeroStateMachine : MonoBehaviour
                 {
                     for(int i = 0; i < BSM.PerformList.Count; i++)
                     {
-                        if(BSM.PerformList[i].AttackerGameObject == this.gameObject)
+                        if(i != 0)
                         {
-                            BSM.PerformList.Remove(BSM.PerformList[i]);
-                        }
-                        if(BSM.PerformList[i].TargetGameObject == this.gameObject)
-                        {
-                            BSM.PerformList[i].TargetGameObject = BSM.HeroInBattle[Random.Range(0, BSM.HeroInBattle.Count)];
+                            if(BSM.PerformList[i].AttackerGameObject == this.gameObject)
+                            {
+                                BSM.deadActor = BSM.PerformList[i].AttackerName;
+                                //BSM.PerformList.Remove(BSM.PerformList[i]);
+                            }
+                            if(BSM.PerformList[i].TargetGameObject == this.gameObject)
+                            {
+                                BSM.PerformList[i].TargetGameObject = BSM.HeroInBattle[Random.Range(0, BSM.HeroInBattle.Count)];
+                            }
                         }
                     }
                 }
                 //change color
                 this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(105,105,105,255);
                 //reset heroinput
-                BSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
+                //BSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
                 alive = false;
             }
             break;
@@ -137,9 +141,10 @@ public class HeroStateMachine : MonoBehaviour
             yield return null;
         }
         //wait a bit
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         //do damage
         DoDamage();
+        yield return new WaitForSeconds(0.25f);
         //go back to original position
         Vector3 firstPosition = startposition;
         while(MoveTowardStart(firstPosition))
@@ -147,11 +152,14 @@ public class HeroStateMachine : MonoBehaviour
             yield return null;
         }
         //remove from perform list
-        BSM.PerformList.RemoveAt(0);
+        if(this.gameObject.tag != "DeadHero")
+        {
+            BSM.PerformList.RemoveAt(0);
+        }
         //reset bsm state to waiting
         if(BSM.battleState != BattleStateMachine.PerformAction.WIN && BSM.battleState != BattleStateMachine.PerformAction.LOSE)
         {
-            BSM.battleState = BattleStateMachine.PerformAction.WAIT;
+            BSM.battleState = BattleStateMachine.PerformAction.CLEANUP;
             //end coroutine
             actionStarted = false;
             //reset this object state
@@ -175,7 +183,7 @@ public class HeroStateMachine : MonoBehaviour
 
     public void TakeDamage (float damageAmount)
     {
-        hero.curHP -= damageAmount;
+        hero.curHP -= ((int)damageAmount);
         if (hero.curHP <= 0)
         {
             hero.curHP = 0;

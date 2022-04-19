@@ -10,6 +10,7 @@ public class BattleStateMachine : MonoBehaviour
         WAIT,
         TAKEACTION,
         PERFORMACTION,
+        CLEANUP,
         CHECKALIVE,
         WIN,
         LOSE
@@ -25,8 +26,6 @@ public class BattleStateMachine : MonoBehaviour
     {
         ACTIVATE,
         WAITING,
-        INPUT1,
-        INPUT2,
         DONE
     }
 
@@ -34,6 +33,8 @@ public class BattleStateMachine : MonoBehaviour
 
     public List<GameObject> HeroToManage = new List<GameObject>();
     private TurnHandler HeroChoice;
+
+    public string deadActor;
 
     public GameObject enemyButton;
     public GameObject actionButton;
@@ -121,6 +122,19 @@ public class BattleStateMachine : MonoBehaviour
             break;
 
             case(PerformAction.PERFORMACTION):
+            //idling till enumerator is done
+            break;
+
+            case(PerformAction.CLEANUP):
+            ClearDeadActors();
+            if(EnemyInBattle.Count < 1 || HeroInBattle.Count < 1)
+            {
+                battleState = PerformAction.CHECKALIVE;
+            }
+            else
+            {
+                battleState = PerformAction.WAIT;
+            }
             break;
 
             case(PerformAction.CHECKALIVE):
@@ -148,6 +162,7 @@ public class BattleStateMachine : MonoBehaviour
             GameManager.gameManager.gameStates = GameManager.GameStates.SAFE_STATE;
             GameManager.gameManager.enemiesToBattle.Clear();
             GameManager.gameManager.fromBattle = true;
+            GameManager.gameManager.gotAttacked = false;
             break;
 
             case(PerformAction.LOSE):
@@ -261,6 +276,20 @@ public class BattleStateMachine : MonoBehaviour
             Destroy(atkBtn);
         }
         atkBtns.Clear();
+    }
+
+    void ClearDeadActors()
+    {
+        for(int i = 0; i<PerformList.Count;i++)
+        {
+            if(deadActor == PerformList[i].AttackerName)
+            {
+                if(PerformList[i].AttackerGameObject.tag == "DeadHero" || PerformList[i].AttackerGameObject.tag == "DeadEnemy")
+                {
+                    PerformList.RemoveAt(i);
+                }
+            }
+        }
     }
 
     void CreateAttackButton()

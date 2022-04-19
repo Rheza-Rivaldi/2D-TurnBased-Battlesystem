@@ -13,8 +13,10 @@ public class PlayerController : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         if(!GameManager.gameManager.fromBattle)
-        {   
+        {
             transform.position = GameManager.gameManager.nextHeroPosition;
+            GameManager.gameManager.spawnPointName = "";
+            GameManager.gameManager.nextHeroPosition = Vector3.zero;
         }
         else
         {
@@ -25,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        myRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * mSpeed * Time.fixedDeltaTime;
+        myRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * mSpeed * Time.deltaTime;
 
         curPos = transform.position;
         if(curPos==lastPos)

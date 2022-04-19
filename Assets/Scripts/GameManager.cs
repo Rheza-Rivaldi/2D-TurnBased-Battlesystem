@@ -56,11 +56,17 @@ public class GameManager : MonoBehaviour
 
     void Start() 
     {
-        if(SceneManager.GetActiveScene().name != "BattleScene")
+        SceneManager.sceneLoaded -= SetPlayerPosition;
+        if(SceneManager.GetActiveScene().name != "BattleScene" && !fromBattle)
         {
             SceneManager.sceneLoaded += SetPlayerPosition;
         }
         gameStates = GameStates.SAFE_STATE;
+    }
+
+    void OnDestroy() 
+    {
+        SceneManager.sceneLoaded -= SetPlayerPosition;
     }
 
     void Update()
@@ -83,6 +89,7 @@ public class GameManager : MonoBehaviour
 
             case(GameStates.BATTLE_STATE):
             StartBattle();
+            SceneManager.LoadScene("BattleScene");
             sceneToLoad = lastScene;
             gameStates = GameStates.IDLE;
             break;
@@ -90,6 +97,7 @@ public class GameManager : MonoBehaviour
             case(GameStates.IDLE):
             break;
         }
+        //if(gotAttacked){gameStates = GameStates.BATTLE_STATE; gotAttacked = false;}
     }
 
     public void LoadNextScene()
@@ -103,10 +111,13 @@ public class GameManager : MonoBehaviour
         isWalking = false;
         gotAttacked = false;
 
-        if(sceneToLoad != "BattleScene")
+        if(scene.name != "BattleScene" && !fromBattle)
         {
-            nextPos = GameObject.Find(spawnPointName);
-            nextHeroPosition = nextPos.transform.position;
+            if(spawnPointName != null)
+            {
+                nextPos = GameObject.Find(spawnPointName);
+                nextHeroPosition = nextPos.transform.position;
+            }
         }
     }
 
@@ -134,7 +145,7 @@ public class GameManager : MonoBehaviour
         isWalking = false;
         canGetEncounter = false;
 
-        SceneManager.LoadScene("BattleScene");
+        //SceneManager.LoadScene("BattleScene");
     }
 
 }

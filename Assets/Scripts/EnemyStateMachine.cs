@@ -75,20 +75,25 @@ public class EnemyStateMachine : MonoBehaviour
                 {
                     for(int i = 0; i < BSM.PerformList.Count; i++)
                     {
-                        if(BSM.PerformList[i].AttackerGameObject == this.gameObject)
+                        if(i != 0)
                         {
-                            BSM.PerformList.RemoveAt(i);
-                        }
-                        if(BSM.PerformList[i].TargetGameObject == this.gameObject)
-                        {
-                            BSM.PerformList[i].TargetGameObject = BSM.EnemyInBattle[(Random.Range(0,BSM.EnemyInBattle.Count))];
+                            if(BSM.PerformList[i].AttackerGameObject == this.gameObject)
+                            {
+                                //BSM.PerformList.RemoveAt(i);
+                                BSM.deadActor = BSM.PerformList[i].AttackerName;
+                                //Debug.Log(this.gameObject.name +" is removed");
+                            }
+                            if(BSM.PerformList[i].TargetGameObject == this.gameObject)
+                            {
+                                BSM.PerformList[i].TargetGameObject = BSM.EnemyInBattle[(Random.Range(0,BSM.EnemyInBattle.Count))];
+                            }
                         }
                     }
                 }
                 this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(105,105,105,255);
                 alive = false;
                 BSM.EnemyButtons();
-                BSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
+                //BSM.battleState = BattleStateMachine.PerformAction.CHECKALIVE;
             }
             break;
         }
@@ -138,9 +143,12 @@ public class EnemyStateMachine : MonoBehaviour
             yield return null;
         }
         //remove from perform list
-        BSM.PerformList.RemoveAt(0);
+        if(this.gameObject.tag != "DeadEnemy")
+        {
+            BSM.PerformList.RemoveAt(0);
+        }
         //reset bsm state to waiting
-        BSM.battleState = BattleStateMachine.PerformAction.WAIT;
+        BSM.battleState = BattleStateMachine.PerformAction.CLEANUP;
         //end coroutine
         actionStarted = false;
         //reset this object state
@@ -166,7 +174,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void TakeDamage (float damageAmount)
     {
-        enemy.curHP -= damageAmount;
+        enemy.curHP -= ((int)damageAmount);
         if (enemy.curHP <= 0)
         {
             enemy.curHP = 0;
