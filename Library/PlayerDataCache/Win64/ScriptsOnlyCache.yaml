@@ -70,41 +70,41 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1460}
     - Class: 114
-      Script: {instanceID: 1668}
+      Script: {instanceID: 1666}
     - Class: 114
-      Script: {instanceID: 1848}
+      Script: {instanceID: 1846}
     - Class: 114
-      Script: {instanceID: 2492}
+      Script: {instanceID: 2490}
     - Class: 114
-      Script: {instanceID: 2584}
+      Script: {instanceID: 2582}
     - Class: 114
-      Script: {instanceID: 2682}
+      Script: {instanceID: 2680}
     - Class: 114
-      Script: {instanceID: 2854}
+      Script: {instanceID: 2852}
     - Class: 114
-      Script: {instanceID: 3040}
+      Script: {instanceID: 3038}
     - Class: 114
-      Script: {instanceID: 3088}
+      Script: {instanceID: 3086}
     - Class: 114
-      Script: {instanceID: 3336}
+      Script: {instanceID: 3334}
     - Class: 114
-      Script: {instanceID: 3452}
+      Script: {instanceID: 3450}
     - Class: 114
-      Script: {instanceID: 3854}
+      Script: {instanceID: 3852}
     - Class: 114
-      Script: {instanceID: 4176}
+      Script: {instanceID: 4174}
     - Class: 114
-      Script: {instanceID: 4222}
+      Script: {instanceID: 4220}
     - Class: 114
-      Script: {instanceID: 4306}
+      Script: {instanceID: 4304}
     - Class: 114
-      Script: {instanceID: 4310}
+      Script: {instanceID: 4308}
     - Class: 114
-      Script: {instanceID: 4554}
+      Script: {instanceID: 4552}
     - Class: 114
-      Script: {instanceID: 5268}
+      Script: {instanceID: 5266}
     - Class: 114
-      Script: {instanceID: 5830}
+      Script: {instanceID: 5828}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -124,100 +124,6 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 225
-      Script: {instanceID: 0}
-    - Class: 156049354
-      Script: {instanceID: 0}
-    - Class: 483693784
-      Script: {instanceID: 0}
-    - Class: 1839735485
-      Script: {instanceID: 0}
-    Assets/Scenes/Camp.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 50
-      Script: {instanceID: 0}
-    - Class: 61
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 626}
-    - Class: 114
-      Script: {instanceID: 1528}
-    - Class: 114
-      Script: {instanceID: 4406}
-    - Class: 114
-      Script: {instanceID: 4668}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 212
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 19719996
-      Script: {instanceID: 0}
-    - Class: 156049354
-      Script: {instanceID: 0}
-    - Class: 483693784
-      Script: {instanceID: 0}
-    - Class: 1839735485
-      Script: {instanceID: 0}
-    Assets/Scenes/Intersection.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 50
-      Script: {instanceID: 0}
-    - Class: 61
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 626}
-    - Class: 114
-      Script: {instanceID: 1528}
-    - Class: 114
-      Script: {instanceID: 4406}
-    - Class: 114
-      Script: {instanceID: 4668}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 212
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 19719996
       Script: {instanceID: 0}
     - Class: 156049354
       Script: {instanceID: 0}
@@ -249,113 +155,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 626}
     - Class: 114
-      Script: {instanceID: 1528}
+      Script: {instanceID: 1526}
     - Class: 114
-      Script: {instanceID: 1592}
+      Script: {instanceID: 1590}
     - Class: 114
-      Script: {instanceID: 3040}
+      Script: {instanceID: 3038}
     - Class: 114
-      Script: {instanceID: 4310}
+      Script: {instanceID: 4308}
     - Class: 114
-      Script: {instanceID: 4406}
+      Script: {instanceID: 4404}
     - Class: 114
-      Script: {instanceID: 4668}
+      Script: {instanceID: 4666}
     - Class: 114
-      Script: {instanceID: 5506}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 212
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 19719996
-      Script: {instanceID: 0}
-    - Class: 156049354
-      Script: {instanceID: 0}
-    - Class: 483693784
-      Script: {instanceID: 0}
-    - Class: 1839735485
-      Script: {instanceID: 0}
-    Assets/Scenes/Riverside.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 50
-      Script: {instanceID: 0}
-    - Class: 61
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 626}
-    - Class: 114
-      Script: {instanceID: 1528}
-    - Class: 114
-      Script: {instanceID: 4406}
-    - Class: 114
-      Script: {instanceID: 4668}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 212
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 19719996
-      Script: {instanceID: 0}
-    - Class: 156049354
-      Script: {instanceID: 0}
-    - Class: 483693784
-      Script: {instanceID: 0}
-    - Class: 1839735485
-      Script: {instanceID: 0}
-    Assets/Scenes/Town.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 50
-      Script: {instanceID: 0}
-    - Class: 61
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 626}
-    - Class: 114
-      Script: {instanceID: 1528}
-    - Class: 114
-      Script: {instanceID: 4406}
-    - Class: 114
-      Script: {instanceID: 4668}
+      Script: {instanceID: 5504}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 157
@@ -983,10 +795,6 @@ ScriptsOnlyBuild:
     className: EnemySelectButton
   platform: 19
   scenePathNames:
-  - Assets/Scenes/Camp.unity
-  - Assets/Scenes/BattleScene.unity
-  - Assets/Scenes/Intersection.unity
   - Assets/Scenes/Pond.unity
-  - Assets/Scenes/Riverside.unity
-  - Assets/Scenes/Town.unity
+  - Assets/Scenes/BattleScene.unity
   playerPath: D:/UnityProjects/BuildTest/2D TurnBased Battlesystem.exe

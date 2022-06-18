@@ -7,11 +7,21 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D myRB;
     float mSpeed = 120f;
     Vector3 curPos, lastPos;
+    float xAxis = 0f;
+    float yAxis = 0f;
+
+    //for animations
+    Animator animator;
+    string currAnimState;
+    //animation states
+    const string PLAYER_IDLE = "Player_idle";
+    const string PLAYER_WALK = "Player_walk";
 
 
     void Start()
     {
         myRB = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         if(!GameManager.gameManager.fromBattle)
         {
             transform.position = GameManager.gameManager.nextHeroPosition;
@@ -25,9 +35,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        xAxis = Input.GetAxisRaw("Horizontal");
+        yAxis = Input.GetAxisRaw("Vertical");
+    }
+
     void FixedUpdate()
     {
-        myRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * mSpeed * Time.deltaTime;
+        myRB.velocity = new Vector2(xAxis, yAxis) * mSpeed * Time.deltaTime;
 
         curPos = transform.position;
         if(curPos==lastPos)
@@ -39,6 +55,24 @@ public class PlayerController : MonoBehaviour
             GameManager.gameManager.isWalking = true;
         }
         lastPos = curPos;
+
+        if(xAxis != 0 || yAxis != 0)
+        {
+            if(xAxis < 0)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            if(xAxis > 0)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }
+            ChangeAnimationState(PLAYER_WALK);
+        }
+        else
+        {
+            ChangeAnimationState(PLAYER_IDLE);
+        }
+
     }
 
     void OnTriggerEnter2D(Collider2D other) 
@@ -68,5 +102,16 @@ public class PlayerController : MonoBehaviour
             GameManager.gameManager.canGetEncounter = false;
             GameManager.gameManager.gameStates = GameManager.GameStates.SAFE_STATE;
         }
+    }
+
+    void ChangeAnimationState (string newAnimState)
+    {
+        //stop the same animation from interrupting itself
+        if(currAnimState == newAnimState){return;}
+
+        //play the animation
+        animator.Play(newAnimState);
+        //reassign the current state
+        currAnimState = newAnimState;
     }
 }

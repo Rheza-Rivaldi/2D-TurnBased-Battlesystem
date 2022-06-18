@@ -7,6 +7,16 @@ public class EnemyStateMachine : MonoBehaviour
     BattleStateMachine BSM;
     public BaseClass enemy;
 
+    //for animations
+    Animator animator;
+    string currAnimState;
+    //animation name
+    public string animationName;
+    //animation states
+    const string ENEMY_IDLE = "_idle";
+    const string ENEMY_WALK = "_walk";
+    const string ENEMY_DEAD = "_dead";
+
     public enum TurnState
     {
         PROCESSING,
@@ -33,6 +43,7 @@ public class EnemyStateMachine : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         currentState = TurnState.PROCESSING;
         BSM = GameObject.Find("BattleManager").GetComponent<BattleStateMachine>();
         startposition = transform.position;
@@ -90,6 +101,7 @@ public class EnemyStateMachine : MonoBehaviour
                         }
                     }
                 }
+                ChangeAnimationState(ENEMY_DEAD);
                 this.gameObject.GetComponent<SpriteRenderer>().color = new Color32(105,105,105,255);
                 alive = false;
                 BSM.EnemyButtons();
@@ -128,20 +140,26 @@ public class EnemyStateMachine : MonoBehaviour
 
         //move to target
         Vector2 targetPosition = new Vector3(AttackTarget.transform.position.x-1f,AttackTarget.transform.position.y,AttackTarget.transform.position.z);
+        ChangeAnimationState(ENEMY_WALK);
         while(MoveTowardTarget(targetPosition))
         {
             yield return null;
         }
+        ChangeAnimationState(ENEMY_IDLE);
         //wait a bit
         yield return new WaitForSeconds(0.5f);
         //do damage
         DoDamage();
         //go back to original position
         Vector3 firstPosition = startposition;
+        ChangeAnimationState(ENEMY_WALK);
         while(MoveTowardStart(firstPosition))
         {
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
             yield return null;
         }
+        ChangeAnimationState(ENEMY_IDLE);
+        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
         //remove from perform list
         if(this.gameObject.tag != "DeadEnemy")
         {
@@ -180,5 +198,17 @@ public class EnemyStateMachine : MonoBehaviour
             enemy.curHP = 0;
             currentState = TurnState.DEAD;
         }
+    }
+
+    void ChangeAnimationState (string newAnimState)
+    {
+        //stop the same animation from interrupting itself
+        if(currAnimState == newAnimState){return;}
+        string newAnimName = animationName+newAnimState;
+        //Debug.Log(newAnimName);
+        //play the animation
+        animator.Play(newAnimName);
+        //reassign the current state
+        currAnimState = newAnimState;
     }
 }

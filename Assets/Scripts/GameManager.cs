@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public bool canGetEncounter = false;
     public bool gotAttacked = false;
     public bool fromBattle = false;
+    public bool encounterRoll = false;
 
     public RegionData curRegion;
     public List<GameObject> enemiesToBattle = new List<GameObject>();
@@ -57,10 +58,7 @@ public class GameManager : MonoBehaviour
     void Start() 
     {
         SceneManager.sceneLoaded -= SetPlayerPosition;
-        if(SceneManager.GetActiveScene().name != "BattleScene" && !fromBattle)
-        {
-            SceneManager.sceneLoaded += SetPlayerPosition;
-        }
+        SceneManager.sceneLoaded += SetPlayerPosition;
         gameStates = GameStates.SAFE_STATE;
     }
 
@@ -77,9 +75,10 @@ public class GameManager : MonoBehaviour
             break;
 
             case(GameStates.DANGER_STATE):
-            if(isWalking)
+            if(isWalking && !gotAttacked)
             {
-                RandomEncounter();
+                //Invoke("RandomEncounter", 0.1f);
+                StartCoroutine(RandomEncounter());
             }
             if(gotAttacked)
             {
@@ -121,13 +120,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void RandomEncounter()
+    IEnumerator RandomEncounter()
     {
+        if(encounterRoll){yield break;}
+        encounterRoll = true;
         if(isWalking && canGetEncounter)
         {
             if(Random.Range(0,100) <= 2)
             {
+                encounterRoll = false;
                 gotAttacked = true;
+            }
+            else
+            {
+                yield return new WaitForSecondsRealtime(1f);
+                encounterRoll = false;
             }
         }
     }

@@ -2668,6 +2668,7 @@ MonoBehaviour:
   EnemyInBattle: []
   HeroInput: 0
   HeroToManage: []
+  deadActor: 
   enemyButton: {fileID: 7302020023299233761, guid: e08b34cf2d099e44fbf26f109cb51c44, type: 3}
   actionButton: {fileID: 1471917106657968545, guid: 8483001c6c92f5243a44871d16ba747a, type: 3}
   magicButton: {fileID: 6564027759972842957, guid: f3e13c9f637c23b4299adb5f50650bc7, type: 3}
@@ -3020,7 +3021,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 391305762022040416, guid: d34e70c3d5bc89c4987e465a1dc9fc6c, type: 3}
       propertyPath: m_Name
-      value: Hero2
+      value: Yellow
       objectReference: {fileID: 0}
     - target: {fileID: 391305762022040446, guid: d34e70c3d5bc89c4987e465a1dc9fc6c, type: 3}
       propertyPath: m_RootOrder
@@ -3077,7 +3078,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 811678409384485104, guid: 877109c804074ae4c8c8cc2f0aa12ab0, type: 3}
       propertyPath: m_Name
-      value: Hero1
+      value: Green
       objectReference: {fileID: 0}
     - target: {fileID: 811678409384485106, guid: 877109c804074ae4c8c8cc2f0aa12ab0, type: 3}
       propertyPath: m_RootOrder
@@ -3122,10 +3123,6 @@ PrefabInstance:
     - target: {fileID: 811678409384485106, guid: 877109c804074ae4c8c8cc2f0aa12ab0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 811678409384485107, guid: 877109c804074ae4c8c8cc2f0aa12ab0, type: 3}
-      propertyPath: hero.curHP
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 877109c804074ae4c8c8cc2f0aa12ab0, type: 3}

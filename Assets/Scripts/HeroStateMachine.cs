@@ -8,6 +8,15 @@ public class HeroStateMachine : MonoBehaviour
     BattleStateMachine BSM;
     public BaseClass hero;
 
+    //for animations
+    Animator animator;
+    string currAnimState;
+    //animation name
+    public string animationName;
+    //animation states
+    const string HERO_IDLE = "_idle";
+    const string HERO_WALK = "_walk";
+
     Vector3 startposition;
 
     public enum TurnState
@@ -40,6 +49,7 @@ public class HeroStateMachine : MonoBehaviour
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         HeroPanelSpacer = GameObject.Find("HeroPanelSpacer").transform;
         CreateHeroPanel();
         cur_cooldown = Random.Range(0,1f);
@@ -136,10 +146,12 @@ public class HeroStateMachine : MonoBehaviour
 
         //move to target
         Vector2 targetPosition = new Vector3(AttackTarget.transform.position.x+1f,AttackTarget.transform.position.y,AttackTarget.transform.position.z);
+        ChangeAnimationState(HERO_WALK);
         while(MoveTowardTarget(targetPosition))
         {
             yield return null;
         }
+        ChangeAnimationState(HERO_IDLE);
         //wait a bit
         yield return new WaitForSeconds(0.25f);
         //do damage
@@ -147,10 +159,14 @@ public class HeroStateMachine : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         //go back to original position
         Vector3 firstPosition = startposition;
+        ChangeAnimationState(HERO_WALK);
         while(MoveTowardStart(firstPosition))
         {
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
             yield return null;
         }
+        this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        ChangeAnimationState(HERO_IDLE);
         //remove from perform list
         if(this.gameObject.tag != "DeadHero")
         {
@@ -215,5 +231,17 @@ public class HeroStateMachine : MonoBehaviour
     {
         stats.HeroHP.text = "HP: " + hero.curHP;
         stats.HeroMP.text = "MP: " + hero.curMP;
+    }
+
+    void ChangeAnimationState (string newAnimState)
+    {
+        //stop the same animation from interrupting itself
+        if(currAnimState == newAnimState){return;}
+        string newAnimName = this.gameObject.name+newAnimState;
+        //Debug.Log(newAnimName);
+        //play the animation
+        animator.Play(newAnimName);
+        //reassign the current state
+        currAnimState = newAnimState;
     }
 }
