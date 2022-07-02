@@ -54,12 +54,29 @@ public class BattleStateMachine : MonoBehaviour
 
     void Awake()
     {
-        for(int i = 0; i < GameManager.gameManager.enemyAmount; i++)
+        /*for(int i = 0; i < GameManager.gameManager.enemyAmount; i++)
         {
             GameObject newEnemy = Instantiate(GameManager.gameManager.enemiesToBattle[i], enemySpawnPoints[i].position, Quaternion.identity) as GameObject;
             newEnemy.name = newEnemy.GetComponent<EnemyStateMachine>().enemy.name+" "+ (i+1);
             newEnemy.GetComponent<EnemyStateMachine>().enemy.name = newEnemy.name;
             EnemyInBattle.Add(newEnemy);
+        }*/
+
+        for(int i = 0; i < GameManager.gameManager.enemyAmount; i++)
+        {
+            GameObject newEnemy = Instantiate(GameManager.gameManager.enemiesToBattle[i], enemySpawnPoints[i].position, Quaternion.identity) as GameObject;
+            int k = 1;
+            for(int j = 0; j<i; j++)
+            {
+                if(newEnemy.GetComponent<EnemyStateMachine>().animationName == EnemyInBattle[j].GetComponent<EnemyStateMachine>().animationName)
+                {
+                    k++;
+                }
+            }
+            newEnemy.name = newEnemy.GetComponent<EnemyStateMachine>().enemy.name+" "+ (k);
+            newEnemy.GetComponent<EnemyStateMachine>().enemy.name = newEnemy.name;
+            EnemyInBattle.Add(newEnemy);
+            k = 1;
         }
     }
 

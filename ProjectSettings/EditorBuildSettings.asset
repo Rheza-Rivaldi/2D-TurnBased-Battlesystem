@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Camp.unity
     guid: 4c425c59b45936c43af03ce9a909b61b
   - enabled: 1
@@ -14,13 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BattleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Intersection.unity
     guid: 5cce60a2a0f4c2e4a87c9d9bf217542d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Riverside.unity
     guid: 98383fc572f7445418eca71fe0d84193
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Town.unity
     guid: 127dc5bc0b835d0438c926e7508c642c
   m_configObjects: {}

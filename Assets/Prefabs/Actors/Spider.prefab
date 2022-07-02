@@ -99,8 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
     name: Spider
-    baseHP: 70
-    curHP: 10
+    baseHP: 60
+    curHP: 60
     baseMP: 30
     curMP: 30
     baseAtk: 10

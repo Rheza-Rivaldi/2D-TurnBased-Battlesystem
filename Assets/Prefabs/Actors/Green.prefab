@@ -100,7 +100,7 @@ MonoBehaviour:
   hero:
     name: Green
     baseHP: 100
-    curHP: 20
+    curHP: 100
     baseMP: 20
     curMP: 20
     baseAtk: 20
@@ -112,6 +112,7 @@ MonoBehaviour:
     MagicAttacks:
     - {fileID: 8870233105946580713, guid: c7f44c1e5f8d118449b96dee32db5bd0, type: 3}
     - {fileID: 540030182141252999, guid: 64719169b7ac6834581dd45b54022622, type: 3}
+  animationName: 
   currentState: 0
   AttackTarget: {fileID: 0}
   HeroPanel: {fileID: 8216364397457459454, guid: 1009691967fd1c04f86c8110a3bbd6af, type: 3}
