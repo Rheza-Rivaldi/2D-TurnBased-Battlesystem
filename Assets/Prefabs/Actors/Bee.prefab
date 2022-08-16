@@ -99,12 +99,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
     name: Bee
-    baseHP: 50
-    curHP: 50
+    baseHP: 30
+    curHP: 30
     baseMP: 20
     curMP: 20
-    baseAtk: 12
-    curAtk: 12
+    baseAtk: 5
+    curAtk: 5
     baseDef: 8
     curDef: 8
     AttackList:

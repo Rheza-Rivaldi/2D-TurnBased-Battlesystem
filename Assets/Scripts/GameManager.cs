@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public bool canGetEncounter = false;
     public bool gotAttacked = false;
     public bool fromBattle = false;
+    public bool loseBattle = false;
     public bool encounterRoll = false;
 
     public RegionData curRegion;
@@ -104,6 +105,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
     }
 
+    public void ResetScene()
+    {
+        SceneManager.LoadScene("Camp");
+    }
+
     void SetPlayerPosition(Scene scene, LoadSceneMode mode)
     {
         canGetEncounter = false;
@@ -126,7 +132,7 @@ public class GameManager : MonoBehaviour
         encounterRoll = true;
         if(isWalking && canGetEncounter)
         {
-            if(Random.Range(0,100) <= 2)
+            if(Random.Range(0,100) <= 10)
             {
                 encounterRoll = false;
                 gotAttacked = true;

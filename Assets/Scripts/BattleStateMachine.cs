@@ -183,6 +183,16 @@ public class BattleStateMachine : MonoBehaviour
             break;
 
             case(PerformAction.LOSE):
+            for(int i = 0; i < EnemyInBattle.Count; i++)
+            {
+                EnemyInBattle[i].GetComponent<EnemyStateMachine>().currentState = EnemyStateMachine.TurnState.WAITING;
+            }
+            GameManager.gameManager.ResetScene();
+            GameManager.gameManager.gameStates = GameManager.GameStates.SAFE_STATE;
+            GameManager.gameManager.enemiesToBattle.Clear();
+            GameManager.gameManager.fromBattle = true;
+            GameManager.gameManager.loseBattle = true;
+            GameManager.gameManager.gotAttacked = false;
             break;
         }
 
@@ -295,6 +305,7 @@ public class BattleStateMachine : MonoBehaviour
         atkBtns.Clear();
     }
 
+    //delete dead actor from perform list
     void ClearDeadActors()
     {
         for(int i = 0; i<PerformList.Count;i++)

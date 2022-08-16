@@ -99,12 +99,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy:
     name: Spider
-    baseHP: 60
-    curHP: 60
+    baseHP: 30
+    curHP: 30
     baseMP: 30
     curMP: 30
-    baseAtk: 10
-    curAtk: 10
+    baseAtk: 5
+    curAtk: 5
     baseDef: 10
     curDef: 10
     AttackList:

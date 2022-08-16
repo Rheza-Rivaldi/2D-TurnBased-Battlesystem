@@ -22,11 +22,19 @@ public class PlayerController : MonoBehaviour
     {
         myRB = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        if(!GameManager.gameManager.fromBattle)
+        if(!GameManager.gameManager.fromBattle && !GameManager.gameManager.loseBattle)
         {
             transform.position = GameManager.gameManager.nextHeroPosition;
             GameManager.gameManager.spawnPointName = "";
             GameManager.gameManager.nextHeroPosition = Vector3.zero;
+        }
+        else if (GameManager.gameManager.loseBattle && GameManager.gameManager.fromBattle)
+        {
+            transform.position = Vector3.zero;
+            GameManager.gameManager.spawnPointName = "";
+            GameManager.gameManager.nextHeroPosition = Vector3.zero;
+            GameManager.gameManager.loseBattle = false;
+            GameManager.gameManager.fromBattle = false;
         }
         else
         {
